@@ -1,0 +1,46 @@
+<router-outlet></router-outlet>
+<section class="user-booking">
+  
+  <div class="container">
+    <div class='card'>
+      <div class='card-header'>
+       <h3 class="text-center py-2">{{pageTitle}}</h3>
+       <h6 class="text-center py-2">Only showing bookings for next 1 week</h6>
+      </div>
+      
+      <div class='card-body'>            
+        <div class='table-responsive'>
+          <table class='table custom-table'
+                *ngIf = 'bookingdtls && bookingdtls.length'>
+            <thead>
+              <tr>
+              <th>HallName</th>
+                <th>Date</th>
+                <th>TimeSlot</th>
+                <th></th>
+                <!-- <th>Status</th> -->
+              </tr>
+             
+            </thead>
+            <tbody>
+              <tr *ngFor='let bookingdtls of bookingdtls'>
+                <td data-label="HallName">{{ bookingdtls.HallName }}</td>
+                <td data-label="Booking Date">{{ bookingdtls.DateOfBooking |date:'MMMM dd, yyyy - EEEE' }}</td>
+                <td data-label="TimeSlot">{{ bookingdtls.TimeSlot }}</td>
+                <td>
+                  <!-- <button class="btn btn-warning" style="cursor:pointer"  (click)= "editBooking(bookingdtls)" style="margin-right:25px;"> Edit</button> -->
+                  <button class="btn btn-danger" style="cursor:pointer" (click)= "deleteBooking(bookingdtls)"> Cancel</button>
+                </td>
+              </tr>
+              
+            </tbody>
+            
+          </table>
+
+          <h5 class="text-center text-danger" *ngIf = '!bookingdtls.length'>You don't have any booking.</h5>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
